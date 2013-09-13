@@ -1,6 +1,8 @@
 require 'mongo'
 require 'dragonfly'
 
+Dragonfly::App.register_datastore(:mongo){ Dragonfly::MongoDataStore }
+
 module Dragonfly
   class MongoDataStore
 

@@ -14,6 +14,15 @@ describe Dragonfly::MongoDataStore do
     @data_store = Dragonfly::MongoDataStore.new :database => 'dragonfly_test'
   end
 
+  describe "configuring the app" do
+    it "can be configured with a symbol" do
+      app.configure do
+        datastore :mongo
+      end
+      app.datastore.should be_a(Dragonfly::MongoDataStore)
+    end
+  end
+
   it_should_behave_like 'data_store'
 
   describe "connecting to a replica set" do
