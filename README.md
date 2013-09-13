@@ -1,29 +1,37 @@
 # Dragonfly::MongoDataStore
 
-TODO: Write a gem description
+Mongo data store for use with the (http://github.com/markevans/dragonfly)[Dragonfly] gem.
 
-## Installation
-
-Add this line to your application's Gemfile:
+## Gemfile
 
     gem 'dragonfly-mongo_data_store'
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install dragonfly-mongo_data_store
-
 ## Usage
 
-TODO: Write usage instructions here
+In your dragonfly config block (with default options):
 
-## Contributing
+    Dragonfly.app.configure
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+      # ...
+
+      datastore :mongo
+
+      # ...
+
+    end
+
+Or with options:
+
+    datastore :mongo, host: 'my.host', database: 'my_database'
+
+### Available options
+
+      host              # e.g. 'my.domain'
+      hosts             # for replica sets, e.g. ['n1.mydb.net:27017', 'n2.mydb.net:27017']
+      connection_opts   # hash that passes through to Mongo::Connection or Mongo::ReplSetConnection
+      port              # e.g. 27017
+      database          # defaults to 'dragonfly'
+      username
+      password
+      connection        # use this if you already have a Mongo::Connection object
+      db                # use this if you already have a Mongo::DB object
