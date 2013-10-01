@@ -45,7 +45,7 @@ describe Dragonfly::MongoDataStore do
       @data_store.password = 'butcher'
       @data_store.db.should_receive(:authenticate).exactly(:once).with('terry','butcher').and_return(true)
       uid = @data_store.write(content)
-      @data_store.read(new_content, uid)
+      @data_store.read(uid)
     end
   end
 
@@ -80,15 +80,15 @@ describe Dragonfly::MongoDataStore do
   describe "already stored stuff" do
     it "still works" do
       uid = @data_store.grid.put("DOOBS", :metadata => {'some' => 'meta'}).to_s
-      @data_store.read(new_content, uid)
+      new_content.update(*@data_store.read(uid))
       new_content.data.should == "DOOBS"
       new_content.meta['some'].should == 'meta'
     end
 
     it "still works when meta was stored as a marshal dumped hash (but stringifies keys)" do
       uid = @data_store.grid.put("DOOBS", :metadata => Dragonfly::Serializer.marshal_b64_encode(:some => 'stuff')).to_s
-      @data_store.read(new_content, uid)
-      new_content.meta['some'].should == 'stuff'
+      c, meta = @data_store.read(uid)
+      meta['some'].should == 'stuff'
     end
   end
 

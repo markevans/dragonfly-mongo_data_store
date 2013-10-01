@@ -30,13 +30,13 @@ module Dragonfly
       end
     end
 
-    def read(content, uid)
+    def read(uid)
       ensure_authenticated!
       grid_io = grid.get(bson_id(uid))
       meta = extract_meta(grid_io)
-      content.update(grid_io.read, meta)
+      [grid_io.read, meta]
     rescue Mongo::GridFileNotFound, BSON::InvalidObjectId => e
-      throw :not_found, uid
+      nil
     end
 
     def destroy(uid)
