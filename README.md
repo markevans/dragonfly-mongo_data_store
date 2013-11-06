@@ -13,7 +13,7 @@ gem 'dragonfly-mongo_data_store'
 In your dragonfly config block (with default options):
 
 ```ruby
-Dragonfly.app.configure
+Dragonfly.app.configure do
   # ...
 
   datastore :mongo
