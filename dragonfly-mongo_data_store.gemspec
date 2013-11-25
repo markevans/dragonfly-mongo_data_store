@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mark@new-bamboo.co.uk"]
   spec.description   = %q{Mongo data store for Dragonfly}
   spec.summary       = %q{Data store for storing content (e.g. images) handled with the Dragonfly gem in a mongo database.}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/markevans/dragonfly-mongo_data_store"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
