@@ -10,9 +10,11 @@ gem 'dragonfly-mongo_data_store'
 
 ## Usage
 
-In your dragonfly config block (with default options):
+Configuration, with default options (remember the require)
 
 ```ruby
+require 'dragonfly/mongo_data_store'
+
 Dragonfly.app.configure do
   # ...
 
